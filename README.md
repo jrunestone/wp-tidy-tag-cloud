@@ -13,7 +13,7 @@ Usage
 
 Instead of wp_tag_cloud(), use tidy_tag_cloud(). It accepts the same parameters as wp_tag_cloud plus:
 
-```
+``` php
 array(
 	'tag_class' => '',	// css class for each individual tag, use '' for no class
 	'list_class' => 'wp-tag-cloud',	// css class for the ul list, use '' for no class
@@ -24,7 +24,7 @@ array(
 
 If the format parameter is set to array, an array of tag objects will be returned:
 
-```
+``` php
 $tag = (object)array(
 	'id' => 0,
 	'link' => '',
@@ -40,7 +40,7 @@ $tag = (object)array(
 
 Remember to add the last parameters 10, 2.
 
-```
+``` php
 // called for each individual tag
 add_filter('tidy_tag_cloud_tag', function($tag, $args) {
 	// modify $tag properties, no need to return anything
@@ -57,7 +57,7 @@ add_filter('tidy_tag_cloud_output', function($output, $args) {
 
 ### Example
 
-```
+``` php
 tidy_tag_cloud(array(
 	'smallest' => 9,
 	'largest' => 22,
