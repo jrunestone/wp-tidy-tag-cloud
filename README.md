@@ -7,6 +7,7 @@ Installation
 ------------
 
 Place tidy-tag-cloud.php in your plugins folder and activate it.
+This plugin removes the inline font-size style from the tag links and replaces them with size-x css classes. To make the tags appear with proper size, add the required css classes.
 
 Usage
 -----

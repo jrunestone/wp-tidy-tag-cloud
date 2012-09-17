@@ -24,6 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 /*
 Use in the same way as you would wp_tag_cloud.
+This plugin removes the inline font-size style from the tag links and replaces them with size-x css classes. To make the tags appear with proper size, add the required css classes.
 
 Accepts default wp_tag_cloud arguments plus:
 	tag_class: Css class for each individual tag, use '' for no class
