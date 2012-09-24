@@ -2,7 +2,7 @@
 /*
 Plugin Name: Tidy tag cloud
 Description: Displays (or returns) a nicer tag cloud without inline style and better configurability.
-Version: 1.0.0
+Version: 1.0.1
 Plugin URI: https://github.com/swemaniac/wp-tidy-tag-cloud
 Author: Bazooka
 Author URI: http://bazooka.se
@@ -31,6 +31,7 @@ Accepts default wp_tag_cloud arguments plus:
 	list_class: Css class for the ul list, use '' for no class
 	show_default_tag_class: Show or hide the default tag class (tag-link-x)
 	show_title: Show or hide link title
+	show_rel: Show or hide rel="tag" tag
 	format: If set to array, will return tag objects instead of default link strings
 
 Filters:
@@ -46,6 +47,7 @@ function tidy_tag_cloud($args = '') {
 		'list_class' => 'wp-tag-cloud',
 		'show_default_tag_class' => false,
 		'show_title' => true,
+		'show_rel' => true,
 		'echo' => true,
 		'separator' => "\n"
 	);
@@ -96,7 +98,9 @@ function tidy_tag_cloud($args = '') {
 
 		$class = isset($tag->css_class) && strlen($tag->css_class) > 0 ? (' class="' . $tag->css_class . '"') : '';
 		$title = $args['show_title'] == true && isset($tag->title) && strlen($tag->title) > 0 ? (' title="' . $tag->title . '"') : '';
-		$link = '<a href="' . $tag->link . '"' . $class . $title . '>' . $tag->name . "</a>";
+		$rel = $args['show_rel'] == true ? ' rel="tag"' : '';
+		
+		$link = '<a href="' . $tag->link . '"' . $class . $title . $rel . '>' . $tag->name . "</a>";
 
 		if ($list)
 			$link = "<li>$link</li>";
