@@ -20,6 +20,7 @@ array(
 	'list_class' => 'wp-tag-cloud',	// css class for the ul list, use '' for no class
 	'show_default_tag_class' => false,	// show or hide the default tag class (tag-link-x)
 	'show_title' => true	// show or hide link title
+	'show_rel' => true	// show or hide rel="tag" tag
 )
 ```
 
@@ -66,7 +67,8 @@ tidy_tag_cloud(array(
 	'format' => 'flat',
 	'tag_class' => 'tag',
 	'show_default_tag_class' => false,
-	'show_title' => false
+	'show_title' => false,
+	'show_rel' => false
 ));
 
 // output:
@@ -92,6 +94,10 @@ Tag: Tag name
 
 Changelog
 ---------
+
+### 1.0.1
+
+* Added the show_rel argument
 
 ### 1.0.0
 
