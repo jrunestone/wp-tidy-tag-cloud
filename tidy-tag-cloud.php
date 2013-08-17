@@ -2,9 +2,9 @@
 /*
 Plugin Name: Tidy tag cloud
 Description: Displays (or returns) a nicer tag cloud without inline style and better configurability.
-Version: 1.0.1
+Version: 1.0.2
 Plugin URI: https://github.com/swemaniac/wp-tidy-tag-cloud
-Author: Bazooka
+Author: Johan Johansson
 Author URI: http://bazooka.se
 License: GPLv3
 
@@ -63,23 +63,25 @@ function tidy_tag_cloud($args = '') {
 	$list = isset($args['format']) && $args['format'] === 'list';
 	$tag_class = (isset($args['tag_class']) && strlen($args['tag_class']) > 0 ? ($args['tag_class'] . ' ') : '');
 
-	foreach ($wp_tags as $tag) {
-		preg_match('/class=\'tag-link-(\d+)\'/i', $tag, $id);
-		preg_match('/href=\'([^\']+)\'/i', $tag, $url);
-		preg_match('/title=\'(\d+)/i', $tag, $count);
-		preg_match('/title=\'([^\']+)\'/i', $tag, $title);
-		preg_match('/font-size: (\d+)/i', $tag, $size);
-		preg_match('/<a[^>]+>([^<]+)<\/a>/i', $tag, $name);
+	if ($wp_tags) {
+		foreach ($wp_tags as $tag) {
+			preg_match('/class=\'tag-link-(\d+)\'/i', $tag, $id);
+			preg_match('/href=\'([^\']+)\'/i', $tag, $url);
+			preg_match('/title=\'(\d+)/i', $tag, $count);
+			preg_match('/title=\'([^\']+)\'/i', $tag, $title);
+			preg_match('/font-size: (\d+)/i', $tag, $size);
+			preg_match('/<a[^>]+>([^<]+)<\/a>/i', $tag, $name);
 
-		$tags[] = (object)array(
-			'id' => $id[1],
-			'link' => $url[1],
-			'name' => $name[1],
-			'size' => $size[1],
-			'title' => $title[1],
-			'count' => $count[1],
-			'css_class' => $tag_class . ($args['show_default_tag_class'] ? ('tag-link-' . $id[1] . ' ') : '') . 'size-' . $size[1]
-		);
+			$tags[] = (object)array(
+				'id' => $id[1],
+				'link' => $url[1],
+				'name' => $name[1],
+				'size' => $size[1],
+				'title' => $title[1],
+				'count' => $count[1],
+				'css_class' => $tag_class . ($args['show_default_tag_class'] ? ('tag-link-' . $id[1] . ' ') : '') . 'size-' . $size[1]
+			);
+		}
 	}
 
 	if (empty($wp_tags))
@@ -87,7 +89,7 @@ function tidy_tag_cloud($args = '') {
 
 	if ($args['format'] === 'array')
 		return $tags;
-	
+
 	$output = array();
 
 	if ($list)
@@ -99,7 +101,7 @@ function tidy_tag_cloud($args = '') {
 		$class = isset($tag->css_class) && strlen($tag->css_class) > 0 ? (' class="' . $tag->css_class . '"') : '';
 		$title = $args['show_title'] == true && isset($tag->title) && strlen($tag->title) > 0 ? (' title="' . $tag->title . '"') : '';
 		$rel = $args['show_rel'] == true ? ' rel="tag"' : '';
-		
+
 		$link = '<a href="' . $tag->link . '"' . $class . $title . $rel . '>' . $tag->name . "</a>";
 
 		if ($list)
