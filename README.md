@@ -1,6 +1,8 @@
 tidy-tag-cloud
 =================
 
+v1.0.2
+
 Tidy tag cloud is a nicer lightweight tag cloud that gets rid of the default inline font-size style and provides better configurability such as custom css classes, return objects instead of strings and more. It's simple to use and can be used in the same manner as the default wp_tag_cloud function.
 
 Installation
@@ -94,6 +96,10 @@ Tag: Tag name
 
 Changelog
 ---------
+
+### 1.0.2
+* Confirmed compatibility with WP 3.6
+* Fixed an error in the case of no tags
 
 ### 1.0.1
 
