@@ -2,7 +2,7 @@
 /*
 Plugin Name: Tidy tag cloud
 Description: Displays (or returns) a nicer tag cloud without inline style and better configurability.
-Version: 1.0.2
+Version: 1.0.3
 Plugin URI: https://github.com/swemaniac/wp-tidy-tag-cloud
 Author: Johan Johansson
 Author URI: http://bazooka.se
